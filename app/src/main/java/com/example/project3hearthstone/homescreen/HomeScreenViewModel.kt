@@ -35,21 +35,10 @@ class HomeScreenViewModel : ViewModel() {
             var getCardsDeferred = HeartstoneApi.retrofitService.getClasses()
             try {
                 var listResult = getCardsDeferred.await()
-                _cardClass.value = "Success Classes:  ${listResult.classes} "
+                _cardClass.value = "Success Classes:  ${listResult.classes}"
             } catch (e: Exception) {
                 _cardClass.value = "Failure: ${e.message}"
             }
-
-        //Call to get cards by class, retrieves card from mage class
-        /*HeartstoneApi.retrofitService.getCardsByClass().enqueue(object: Callback<List<CardsByClass>>{
-            override fun onResponse(call: Call<List<CardsByClass>>, response: Response<List<CardsByClass>>) {
-                _cardClass.value = "A Card from Mage Class: " + (response.body()?.get(0)?.name ?: null)
-            }
-
-            override fun onFailure(call: Call<List<CardsByClass>>, t: Throwable) {
-                _cardClass.value = "failure" + t.message
-            }
-        })*/
     }
 
 }

@@ -10,4 +10,14 @@
         android:name="com.example.project3hearthstone.homescreen.HomeScreenFragment"
         android:label="home_screen_fragment"
         tools:layout="@layout/home_screen_fragment" />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.project3hearthstone.favoritesscreen.FavoritesFragment"
+        android:label="favorites_fragment"
+        tools:layout="@layout/favorites_fragment" />
+    <fragment
+        android:id="@+id/mapShopsFragment"
+        android:name="com.example.project3hearthstone.mapscreen.MapShopsFragment"
+        android:label="map_shops_fragment"
+        tools:layout="@layout/map_shops_fragment" />
 </navigation>

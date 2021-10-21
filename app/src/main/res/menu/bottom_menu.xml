@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/homeScreenFragment"
+        android:icon="@drawable/main_face"
+        android:title="@string/main_menu" />
+    <item
+        android:id="@+id/favoritesFragment"
+        android:icon="@drawable/fav_heart"
+        android:title="@string/favorites_menu" />
+    <item
+        android:id="@+id/mapShopsFragment"
+        android:icon="@drawable/map_shop"
+        android:title="@string/shops_menu" />
+</menu>
