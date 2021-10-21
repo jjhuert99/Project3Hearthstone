@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Project3Hearthstone</string>
+    <string name="search_cards">Search Cards</string>
+    <string name="search">Search</string>
 </resources>
