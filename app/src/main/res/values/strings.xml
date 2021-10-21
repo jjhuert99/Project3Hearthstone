@@ -2,4 +2,7 @@
     <string name="app_name">Project3Hearthstone</string>
     <string name="search_cards">Search Cards</string>
     <string name="search">Search</string>
+    <string name="main_menu">Main</string>
+    <string name="favorites_menu">Favorites</string>
+    <string name="shops_menu">Shops</string>
 </resources>
