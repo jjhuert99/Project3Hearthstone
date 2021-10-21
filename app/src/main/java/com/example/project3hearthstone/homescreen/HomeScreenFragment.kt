@@ -7,13 +7,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.project3hearthstone.R
+import com.example.project3hearthstone.databinding.HomeScreenFragmentBinding
 
 class HomeScreenFragment : Fragment() {
+
+    private val viewModel: HomeScreenViewModel by lazy{
+        ViewModelProvider(this).get(HomeScreenViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.home_screen_fragment, container, false)
+        //set databinding
+        val binding = HomeScreenFragmentBinding.inflate(inflater)
+        binding.setLifecycleOwner(this)
+        binding.viewModel = viewModel
+
+
+
+        return binding.root
     }
 }
