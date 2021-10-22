@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import com.example.project3hearthstone.R
 import com.example.project3hearthstone.databinding.HomeScreenFragmentBinding
 
@@ -24,7 +25,11 @@ class HomeScreenFragment : Fragment() {
         binding.setLifecycleOwner(this)
         binding.viewModel = viewModel
 
-
+        val adapter = HomeScreenAdapter()
+        binding.classesList.adapter = adapter
+        viewModel.cardClass.observe(viewLifecycleOwner, Observer{
+            adapter.dataClasses = it
+        })
 
         return binding.root
     }

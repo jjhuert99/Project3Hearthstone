@@ -20,10 +20,13 @@ class HomeScreenViewModel : ViewModel() {
     private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
+    private val _status = MutableLiveData<String>()
+    val status: LiveData<String>
+        get() = _status
     //binded to fragment UI, TextView
     //data encapsulation
-    private val _cardClass = MutableLiveData<String>()
-    val cardClass: LiveData<String>
+    private val _cardClass = MutableLiveData<List<String>>()
+    val cardClass: LiveData<List<String>>
         get() = _cardClass
 
     init{
@@ -35,14 +38,12 @@ class HomeScreenViewModel : ViewModel() {
             var getCardsDeferred = HeartstoneApi.retrofitService.getClasses()
             try {
                 var listResult = getCardsDeferred.await()
-                _cardClass.value = "Success Classes:  ${listResult.classes}"
+                _cardClass.value = listResult.classes
             } catch (e: Exception) {
-                _cardClass.value = "Failure: ${e.message}"
+                _status.value = "Failure: ${e.message}"
             }
     }
-
 }
-
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
