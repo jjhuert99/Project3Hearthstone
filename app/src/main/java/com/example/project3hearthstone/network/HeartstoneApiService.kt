@@ -11,6 +11,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.create
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Path
 
 private const val BASE_URL = "https://omgvamp-hearthstone-v1.p.rapidapi.com/"
 private val moshi = Moshi.Builder()
@@ -30,22 +31,27 @@ interface HeartstoneApiService {
             @Header("x-rapidapi-key") key: String = "8ea56d2ca4mshbf724a82ce4610ep1dc054jsnd7092e043b04",
     ): Deferred<InfoData>
 
-    @GET("cards/classes/mage")
+    @GET("cards/classes/{aClass}")
     fun getCardsByClass(
             @Header("x-rapidapi-host") host: String = "omgvamp-hearthstone-v1.p.rapidapi.com",
             @Header("x-rapidapi-key") key: String = "8ea56d2ca4mshbf724a82ce4610ep1dc054jsnd7092e043b04",
+            @Path("aClass") aClass: String
     ): Deferred<List<CardsByClass>>
 
-    @GET("cards/search/{name}")
+    @GET("cards/search/{search}")
     fun getCardsBySearch(
             @Header("x-rapidapi-host") host: String = "omgvamp-hearthstone-v1.p.rapidapi.com",
             @Header("x-rapidapi-key") key: String = "8ea56d2ca4mshbf724a82ce4610ep1dc054jsnd7092e043b04",
+            @Path("search") search: String
+
     ): Deferred<List<CardsBySearch>>
 
     @GET("cards/{cardName}")
     fun getSingleCard(
             @Header("x-rapidapi-host") host: String = "omgvamp-hearthstone-v1.p.rapidapi.com",
             @Header("x-rapidapi-key") key: String = "8ea56d2ca4mshbf724a82ce4610ep1dc054jsnd7092e043b04",
+            @Path("cardName") cardName: String
+
     ): Deferred<List<SingleCard>>
 }
 

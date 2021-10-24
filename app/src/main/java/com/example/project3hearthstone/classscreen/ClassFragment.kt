@@ -7,24 +7,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.project3hearthstone.R
+import com.example.project3hearthstone.databinding.ClassFragmentBinding
+import com.example.project3hearthstone.homescreen.HomeScreenViewModel
 
 class ClassFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = ClassFragment()
+    private val viewModel: ClassViewModel by lazy{
+        ViewModelProvider(this).get(ClassViewModel::class.java)
+    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val binding = ClassFragmentBinding.inflate(inflater)
+        binding.setLifecycleOwner(this)
+        binding.viewModel = viewModel
+
+
+        return binding.root
     }
 
-    private lateinit var viewModel: ClassViewModel
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.class_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ClassViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }

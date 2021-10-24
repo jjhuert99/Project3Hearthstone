@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/homeScreenFragment">
+    app:startDestination="@id/classFragment">
 
     <fragment
         android:id="@+id/homeScreenFragment"
@@ -20,4 +20,8 @@
         android:name="com.example.project3hearthstone.mapscreen.MapShopsFragment"
         android:label="map_shops_fragment"
         tools:layout="@layout/map_shops_fragment" />
+    <fragment
+        android:id="@+id/classFragment"
+        android:name="com.example.project3hearthstone.classscreen.ClassFragment"
+        android:label="ClassFragment" />
 </navigation>
