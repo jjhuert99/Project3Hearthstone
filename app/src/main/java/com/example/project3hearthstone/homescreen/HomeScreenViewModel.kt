@@ -23,6 +23,7 @@ class HomeScreenViewModel : ViewModel() {
     private val _status = MutableLiveData<String>()
     val status: LiveData<String>
         get() = _status
+
     //binded to fragment UI, TextView
     //data encapsulation
     private val _cardClass = MutableLiveData<List<String>>()
