@@ -25,6 +25,7 @@ class ClassFragment : Fragment() {
         val viewModelFactory = ClassViewModelFactory(passedClass, application)
 
         binding.viewModel = ViewModelProvider(this, viewModelFactory).get(ClassViewModel::class.java)
+        binding.classRecyclerView.adapter = CardsByClassAdapter()
 
 
         return binding.root
