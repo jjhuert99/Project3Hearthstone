@@ -30,6 +30,10 @@ class HomeScreenViewModel : ViewModel() {
     val cardClass: LiveData<List<String>>
         get() = _cardClass
 
+    private val _navigateToClassScreen = MutableLiveData<String>()
+    val navigateToClassScreen: LiveData<String>
+        get() = _navigateToClassScreen
+
     init{
         getCardClasses()
     }
@@ -49,4 +53,11 @@ class HomeScreenViewModel : ViewModel() {
         super.onCleared()
         viewModelJob.cancel()
     }
+    fun navigateToClass(classPicked: String){
+        _navigateToClassScreen.value = classPicked
+    }
+
+ /*   fun navigateToClassComplete(){
+        _navigateToClassScreen.value = null
+    }*/
 }

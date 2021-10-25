@@ -3,13 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/classFragment">
+    app:startDestination="@id/homeScreenFragment">
 
     <fragment
         android:id="@+id/homeScreenFragment"
         android:name="com.example.project3hearthstone.homescreen.HomeScreenFragment"
         android:label="home_screen_fragment"
-        tools:layout="@layout/home_screen_fragment" />
+        tools:layout="@layout/home_screen_fragment">
+        <action
+            android:id="@+id/action_homeScreenFragment_to_classFragment"
+            app:destination="@id/classFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="com.example.project3hearthstone.favoritesscreen.FavoritesFragment"
@@ -23,5 +27,9 @@
     <fragment
         android:id="@+id/classFragment"
         android:name="com.example.project3hearthstone.classscreen.ClassFragment"
-        android:label="ClassFragment" />
+        android:label="ClassFragment">
+        <argument
+            android:name="classPass"
+            app:argType="string" />
+    </fragment>
 </navigation>

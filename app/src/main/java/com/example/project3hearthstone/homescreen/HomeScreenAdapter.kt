@@ -22,7 +22,6 @@ class HomeScreenAdapter(val clickListener: ClassListener): ListAdapter<String, H
         }
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeScreenViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = HomescreenViewHolderBinding.inflate(layoutInflater, parent, false)
@@ -66,6 +65,7 @@ class HomeScreenDiffCallback: DiffUtil.ItemCallback<String>(){
         return oldItem == newItem
     }
 }
+
 class ClassListener(val clickListener: (classA: String)-> Unit){
     fun onClick(classesA: String) = clickListener(classesA)
 }
