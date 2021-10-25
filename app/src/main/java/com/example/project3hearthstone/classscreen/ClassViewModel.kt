@@ -28,8 +28,8 @@ class ClassViewModel(passedClassB: String, application: Application) : ViewModel
     val status: LiveData<String>
         get() = _status
 
-    private val _cards = MutableLiveData<CardsByClass>()
-    val cards: LiveData<CardsByClass>
+    private val _cards = MutableLiveData<List<CardsByClass>>()
+    val cards: LiveData<List<CardsByClass>>
         get() = _cards
 
     init {
@@ -43,7 +43,7 @@ class ClassViewModel(passedClassB: String, application: Application) : ViewModel
                 HeartstoneApi.retrofitService.getCardsByClass(aClass = _passedClass.value!!)
             try {
                 var listResult = getCardsDeferred.await()
-                _cards.value = listResult[0]
+                _cards.value = listResult
 
             } catch (e: Exception) {
                 _status.value = "Failure" + e.message

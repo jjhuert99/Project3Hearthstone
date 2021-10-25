@@ -4,7 +4,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
+        <variable
+            name="classCard"
+            type="com.example.project3hearthstone.network.CardsByClass" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,48 +19,57 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="TextView"
+            android:text="@{classCard.name}"
+            android:textAlignment="viewStart"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/cardType"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/cardImage"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Text Here" />
 
         <TextView
             android:id="@+id/cardType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="TextView"
+            android:text="@{classCard.type}"
+            android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/cardRarity"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardName" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/cardImage"
+            app:layout_constraintTop_toBottomOf="@+id/cardName"
+            tools:text="Text Here" />
 
         <TextView
             android:id="@+id/cardRarity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="TextView"
+            android:text="@{classCard.rarity}"
+            android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/cardSet"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardType" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/cardImage"
+            app:layout_constraintTop_toBottomOf="@+id/cardType"
+            tools:text="Text Here" />
 
         <TextView
             android:id="@+id/cardSet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="TextView"
+            android:text="@{classCard.cardSet}"
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardRarity" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/cardImage"
+            app:layout_constraintTop_toBottomOf="@+id/cardRarity"
+            tools:text="Text Here" />
 
         <ImageView
             android:id="@+id/cardImage"
@@ -70,13 +81,14 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.533"
             app:srcCompat="@drawable/logo" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/favHeart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
