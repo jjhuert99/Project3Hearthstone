@@ -4,6 +4,7 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Deferred
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -49,7 +50,7 @@ interface HeartstoneApiService {
             @Header("x-rapidapi-key") key: String = "8ea56d2ca4mshbf724a82ce4610ep1dc054jsnd7092e043b04",
             @Path("cardName") cardName: String
 
-    ): Deferred<List<SingleCard>>
+    ): Deferred<List<SingleCard>>//Deferred<List<SingleCard>>
 }
 
 object HeartstoneApi {

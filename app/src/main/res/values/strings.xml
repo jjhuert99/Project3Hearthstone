@@ -5,4 +5,8 @@
     <string name="main_menu">Main</string>
     <string name="favorites_menu">Favorites</string>
     <string name="shops_menu">Shops</string>
+    <string name="effect">Effect:</string>
+    <string name="set">Set:</string>
+    <string name="rarity">Rarity:</string>
+    <string name="type">Type:</string>
 </resources>
