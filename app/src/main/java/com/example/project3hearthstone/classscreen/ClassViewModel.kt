@@ -24,13 +24,24 @@ class ClassViewModel(passedClassB: String, application: Application) : ViewModel
     val passedClass: LiveData<String>
         get() = _passedClass
 
+    //sotres responses for succes or failure for retrieveing data
     private val _status = MutableLiveData<String>()
     val status: LiveData<String>
         get() = _status
 
+    //holds retrieved data
     private val _cards = MutableLiveData<List<CardsByClass>>()
     val cards: LiveData<List<CardsByClass>>
         get() = _cards
+
+    //navigation
+    private val _navigateToOverView = MutableLiveData<String>()
+    val navigateToOverView: LiveData<String>
+        get() = _navigateToOverView
+
+    fun passCardName(passName: String){
+        _navigateToOverView.value = passName
+    }
 
     init {
         _passedClass.value = passedClassB
@@ -39,12 +50,10 @@ class ClassViewModel(passedClassB: String, application: Application) : ViewModel
 
     private fun getCardsByClass() {
         coroutineScope.launch {
-            var getCardsDeferred =
-                HeartstoneApi.retrofitService.getCardsByClass(aClass = _passedClass.value!!)
+            var getCardsDeferred = HeartstoneApi.retrofitService.getCardsByClass(aClass = _passedClass.value!!)
             try {
-                var listResult = getCardsDeferred.await()
-                _cards.value = listResult
-
+                var listResults = getCardsDeferred.await()
+                _cards.value = listResults
             } catch (e: Exception) {
                 _status.value = "Failure" + e.message
             }
