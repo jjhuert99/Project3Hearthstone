@@ -1,5 +1,7 @@
 package com.example.project3hearthstone.cardoverview
 
+import android.app.Application
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,14 +11,15 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-class CardOverviewViewModel : ViewModel() {
+class CardOverviewViewModel(passedName: String, application: Application) : ViewModel() {
     //coroutines setup
     private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+
+    private val _passedCardName = MutableLiveData<String>()
+    val passedCardName: LiveData<String>
+        get() = _passedCardName
 
     private val _status = MutableLiveData<String>()
     val status: LiveData<String>
@@ -27,24 +30,13 @@ class CardOverviewViewModel : ViewModel() {
         get() = _singleCard
 
     init {
+        _passedCardName.value = passedName
         getCardOverview()
     }
 
-    /*private fun getCardOverview() {
-        HeartstoneApi.retrofitService.getSingleCard(cardName = "Mana Bind").enqueue(object: Callback<List<SingleCard>>{
-            override fun onFailure(call: Call<List<SingleCard>>, t: Throwable) {
-                _response.value = "Failure: " + t.message
-            }
-            override fun onResponse(call: Call<List<SingleCard>>, response: Response<List<SingleCard>>) {
-                _response.value = response.body().toString()
-            }
-        })
-        //_response.value = "Card Overview Here"
-    }*/
     private fun getCardOverview() {
         coroutineScope.launch {
-            var getSingleDeferred =
-                HeartstoneApi.retrofitService.getSingleCard(cardName = "Mana Bind")
+            var getSingleDeferred = HeartstoneApi.retrofitService.getSingleCard(cardName = _passedCardName.value!!)
             try {
                 var listResult = getSingleDeferred.await()
                 _singleCard.value = listResult
