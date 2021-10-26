@@ -7,26 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.project3hearthstone.R
+import com.example.project3hearthstone.databinding.CardOverviewFragmentBinding
+import com.example.project3hearthstone.homescreen.HomeScreenViewModel
 
 class CardOverviewFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = CardOverviewFragment()
+    private val viewModel: CardOverviewViewModel by lazy{
+        ViewModelProvider(this).get(CardOverviewViewModel::class.java)
     }
 
-    private lateinit var viewModel: CardOverviewViewModel
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val binding = CardOverviewFragmentBinding.inflate(inflater)
+        binding.setLifecycleOwner(this)
+        binding.viewModel = viewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.card_overview_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(CardOverviewViewModel::class.java)
-        // TODO: Use the ViewModel
+        return binding.root
     }
 
 }
