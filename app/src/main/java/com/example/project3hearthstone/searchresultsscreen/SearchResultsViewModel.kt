@@ -15,6 +15,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class SearchResultsViewModel(searchString: String, application: Application) : ViewModel() {
+    //passed Argument
     private val _passedSearch = MutableLiveData<String>()
     val passedSearch: LiveData<String>
         get() = _passedSearch
@@ -26,6 +27,14 @@ class SearchResultsViewModel(searchString: String, application: Application) : V
     private val _searcResults = MutableLiveData<List<CardsBySearch>>()
     val searcResults: LiveData<List<CardsBySearch>>
         get() = _searcResults
+
+    private val _navigateToOverView = MutableLiveData<String>()
+    val navigateToOverView: LiveData<String>
+        get() = _navigateToOverView
+
+    fun passCardName(passName: String){
+        _navigateToOverView.value = passName
+    }
 
     private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
