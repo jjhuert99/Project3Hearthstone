@@ -1,9 +1,9 @@
 package com.example.project3hearthstone.network
 
 data class CardsBySearch(
-        val cardId: String,
-        val name: String,
-        val type: String,
-        val rarity: String,
-        val cardSet: String
+        val cardId: String?=null,
+        val name: String?=null,
+        val type: String?=null,
+        val rarity: String?=null,
+        val cardSet: String?=null
 )

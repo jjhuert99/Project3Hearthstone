@@ -10,6 +10,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 private const val BASE_URL = "https://omgvamp-hearthstone-v1.p.rapidapi.com/"
 private val moshi = Moshi.Builder()
@@ -36,12 +37,11 @@ interface HeartstoneApiService {
             @Path("aClass") aClass: String
     ): Deferred<List<CardsByClass>>
 
-    @GET("cards/search/{search}")
+    @GET("cards/search/{searchCard}")
     fun getCardsBySearch(
             @Header("x-rapidapi-host") host: String = "omgvamp-hearthstone-v1.p.rapidapi.com",
             @Header("x-rapidapi-key") key: String = "8ea56d2ca4mshbf724a82ce4610ep1dc054jsnd7092e043b04",
-            @Path("search") search: String
-
+            @Path("searchCard") searchCard: String
     ): Deferred<List<CardsBySearch>>
 
     @GET("cards/{cardName}")
