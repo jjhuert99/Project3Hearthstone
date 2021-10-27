@@ -10,6 +10,7 @@ import com.example.project3hearthstone.databinding.ClassScreenViewHolderBinding
 import com.example.project3hearthstone.network.CardsByClass
 
 class CardsByClassAdapter(val clickListener: OnClickListener): ListAdapter<CardsByClass, CardsByClassAdapter.CardsByClassViewHolder>(DiffCallback){
+
     class CardsByClassViewHolder(private var binding: ClassScreenViewHolderBinding): RecyclerView.ViewHolder(binding.root){
        val cardsByClassHolder: View = binding.cardByClassHolder
         fun bind(cardsShow: CardsByClass){

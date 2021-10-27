@@ -19,7 +19,7 @@ class ClassFragment : Fragment() {
         val application = requireNotNull(activity).application
         val binding = ClassFragmentBinding.inflate(inflater)
         binding.setLifecycleOwner(this)
-        //binding.viewModel = viewModel
+        //received Args
         val passedClass = ClassFragmentArgs.fromBundle(requireArguments()).classPass
         val viewModelFactory = ClassViewModelFactory(passedClass, application)
 
