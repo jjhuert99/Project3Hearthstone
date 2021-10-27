@@ -3,16 +3,11 @@ package com.example.project3hearthstone.homescreen
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.project3hearthstone.network.CardsByClass
 import com.example.project3hearthstone.network.HeartstoneApi
-import com.example.project3hearthstone.network.InfoData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class HomeScreenViewModel : ViewModel() {
 

@@ -19,10 +19,7 @@ class HomeScreenFragment : Fragment() {
         ViewModelProvider(this).get(HomeScreenViewModel::class.java)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         //set databinding
         val binding = HomeScreenFragmentBinding.inflate(inflater)
         binding.setLifecycleOwner(this)

@@ -7,26 +7,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.project3hearthstone.R
+import com.example.project3hearthstone.classscreen.ClassViewModel
+import com.example.project3hearthstone.databinding.SearchResultsFragmentBinding
 
 class SearchResultsFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = SearchResultsFragment()
+    private val viewModel: SearchResultsViewModel by lazy{
+        ViewModelProvider(this).get(SearchResultsViewModel::class.java)
     }
 
-    private lateinit var viewModel: SearchResultsViewModel
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val application = requireNotNull(activity).application
+        val binding = SearchResultsFragmentBinding.inflate(inflater)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this.viewLifecycleOwner
+        binding.searchResultsRV.adapter = SearchResultsAdapter()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.search_results_fragment, container, false)
+        return binding.root
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SearchResultsViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
 }
