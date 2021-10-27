@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/searchResultsFragment">
+    app:startDestination="@id/homeScreenFragment">
 
     <fragment
         android:id="@+id/homeScreenFragment"
@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeScreenFragment_to_classFragment"
             app:destination="@id/classFragment" />
+        <action
+            android:id="@+id/action_homeScreenFragment_to_searchResultsFragment"
+            app:destination="@id/searchResultsFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
@@ -46,5 +49,12 @@
     <fragment
         android:id="@+id/searchResultsFragment"
         android:name="com.example.project3hearthstone.searchresultsscreen.SearchResultsFragment"
-        android:label="SearchResultsFragment" />
+        android:label="SearchResultsFragment" >
+        <argument
+            android:name="searchString"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_searchResultsFragment_to_cardOverviewFragment"
+            app:destination="@id/cardOverviewFragment" />
+    </fragment>
 </navigation>

@@ -18,8 +18,10 @@ class SearchResultsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val application = requireNotNull(activity).application
         val binding = SearchResultsFragmentBinding.inflate(inflater)
-        binding.viewModel = viewModel
         binding.lifecycleOwner = this.viewLifecycleOwner
+        val passedSearch = SearchResultsFragmentArgs.fromBundle(requireArguments()).searchString
+        val viewModelFactory = SearchViewModelFactory(passedSearch, application)
+        binding.viewModel = ViewModelProvider(this, viewModelFactory).get(SearchResultsViewModel::class.java)
         binding.searchResultsRV.adapter = SearchResultsAdapter()
 
         return binding.root

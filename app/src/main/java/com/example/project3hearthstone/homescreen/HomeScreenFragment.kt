@@ -40,6 +40,10 @@ class HomeScreenFragment : Fragment() {
             adapter.submitList(it)
         })
 
+        viewModel.navigateToSearchScreen.observe(this, Observer {
+            this.findNavController().navigate(HomeScreenFragmentDirections.actionHomeScreenFragmentToSearchResultsFragment(it))
+        })
+
         return binding.root
     }
 }
