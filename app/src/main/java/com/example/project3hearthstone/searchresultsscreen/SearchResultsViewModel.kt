@@ -1,5 +1,6 @@
 package com.example.project3hearthstone.searchresultsscreen
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,7 +14,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SearchResultsViewModel : ViewModel() {
+class SearchResultsViewModel(searchString: String, application: Application) : ViewModel() {
+    private val _passedSearch = MutableLiveData<String>()
+    val passedSearch: LiveData<String>
+        get() = _passedSearch
+
     private val _status = MutableLiveData<String>()
     val status: LiveData<String>
         get() = _status
@@ -26,21 +31,14 @@ class SearchResultsViewModel : ViewModel() {
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init {
+        _passedSearch.value = searchString
         getSearchResults()
     }
 
     private fun getSearchResults() {
-        /*HeartstoneApi.retrofitService.getCardsBySearch(searchCard = "Druid").enqueue(object: Callback<List<CardsBySearch>>{
-            override fun onFailure(call: Call<List<CardsBySearch>>, t: Throwable) {
-                _response.value = "Failure: " + t.message
-            }
-            override fun onResponse(call: Call<List<CardsBySearch>>, response: Response<List<CardsBySearch>>) {
-                _response.value = "Found this many: " + response.body()?.size
-            }
-        })*/
         coroutineScope.launch {
             var getCardsDeferred =
-                HeartstoneApi.retrofitService.getCardsBySearch(searchCard = "Druid")
+                HeartstoneApi.retrofitService.getCardsBySearch(searchCard = _passedSearch.value!!)
             try {
                 var listResult = getCardsDeferred.await()
                 _searcResults.value = listResult

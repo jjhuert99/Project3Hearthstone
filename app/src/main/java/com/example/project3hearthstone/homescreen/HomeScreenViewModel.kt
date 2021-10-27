@@ -29,6 +29,13 @@ class HomeScreenViewModel : ViewModel() {
     val navigateToClassScreen: LiveData<String>
         get() = _navigateToClassScreen
 
+    private val _navigateToSearchScreen = MutableLiveData<String>()
+    val navigateToSearchScreen: LiveData<String>
+        get() = _navigateToSearchScreen
+
+    var liveSearch = MutableLiveData<String>()
+
+
     init{
         getCardClasses()
     }
@@ -51,6 +58,11 @@ class HomeScreenViewModel : ViewModel() {
     fun navigateToClass(classPicked: String){
         _navigateToClassScreen.value = classPicked
     }
+
+    fun clickedSearch(){
+        _navigateToSearchScreen.value = liveSearch.value
+    }
+
 
  /*   fun navigateToClassComplete(){
         _navigateToClassScreen.value = null

@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
-            android:text="@{viewModel.searcResults[0].name}"
+            android:text="@{`Search results for: `+ viewModel.passedSearch}"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="24sp" />
