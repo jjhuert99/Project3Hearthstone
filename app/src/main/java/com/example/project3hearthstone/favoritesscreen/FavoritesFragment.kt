@@ -7,26 +7,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.project3hearthstone.R
+import com.example.project3hearthstone.cardoverview.CardOverviewViewModel
+import com.example.project3hearthstone.cardoverview.CardOverviewViewModelFactory
+import com.example.project3hearthstone.classscreen.ClassViewModel
+import com.example.project3hearthstone.databinding.FavoritesFragmentBinding
+import com.example.project3hearthstone.favoritesdatabase.FavoritesDatabase
 
 class FavoritesFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = FavoritesFragment()
+    private val viewModel: FavoritesViewModel by lazy{
+        ViewModelProvider(this).get(FavoritesViewModel::class.java)
     }
 
-    private lateinit var viewModel: FavoritesViewModel
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val binding = FavoritesFragmentBinding.inflate(inflater)
+        val application = requireNotNull(activity).application
+        binding.setLifecycleOwner(this)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.favorites_fragment, container, false)
+        val dataSource = FavoritesDatabase.getInstance(application).favoritesDatabaseDao
+        val viewModelFactory = FavoritesViewModelFactory(application, dataSource)
+        binding.viewModel = ViewModelProvider(this, viewModelFactory).get(FavoritesViewModel::class.java)
+
+        binding.favsRecyclerView.adapter = FavoritesAdapter()
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(FavoritesViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }
