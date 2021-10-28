@@ -1,15 +1,13 @@
 package com.example.project3hearthstone.cardoverview
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.project3hearthstone.R
-import com.example.project3hearthstone.classscreen.ClassViewModel
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.project3hearthstone.databinding.CardOverviewFragmentBinding
-import com.example.project3hearthstone.homescreen.HomeScreenViewModel
+import com.example.project3hearthstone.favoritesdatabase.FavoritesDatabase
 
 class CardOverviewFragment : Fragment() {
 
@@ -17,9 +15,10 @@ class CardOverviewFragment : Fragment() {
         val application = requireNotNull(activity).application
         val binding = CardOverviewFragmentBinding.inflate(inflater)
         binding.setLifecycleOwner(this)
+
+        val dataSource = FavoritesDatabase.getInstance(application).favoritesDatabaseDao
         val cardNamePassed = CardOverviewFragmentArgs.fromBundle(requireArguments()).cardNamePassed
-        val viewModelFactory = CardOverviewViewModelFactory(cardNamePassed, application)
-        //binding.setLifecycleOwner(this)
+        val viewModelFactory = CardOverviewViewModelFactory(cardNamePassed, application, dataSource)
         binding.viewModel = ViewModelProvider(this, viewModelFactory).get(CardOverviewViewModel::class.java)
 
         return binding.root

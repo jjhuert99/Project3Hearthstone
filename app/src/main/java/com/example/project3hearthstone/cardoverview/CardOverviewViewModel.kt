@@ -5,14 +5,13 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.project3hearthstone.favoritesdatabase.Favorite
+import com.example.project3hearthstone.favoritesdatabase.FavoritesDatabaseDao
 import com.example.project3hearthstone.network.HeartstoneApi
 import com.example.project3hearthstone.network.SingleCard
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
-class CardOverviewViewModel(passedName: String, application: Application) : ViewModel() {
+class CardOverviewViewModel(passedName: String, application: Application, val database: FavoritesDatabaseDao) : ViewModel() {
     //coroutines setup
     private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
@@ -29,10 +28,47 @@ class CardOverviewViewModel(passedName: String, application: Application) : View
     val singleCard: LiveData<List<SingleCard>>
         get() = _singleCard
 
+
+    private var fav = MutableLiveData<Favorite?>()
+    private val favs = database.getAllFav()
+
     init {
         _passedCardName.value = passedName
         getCardOverview()
+        initializeFav()
     }
+
+    private fun initializeFav() {
+        coroutineScope.launch {
+            fav.value = getFavFromDatabase()
+        }
+    }
+
+    private suspend fun getFavFromDatabase(): Favorite? {
+        return withContext(Dispatchers.IO){
+            var fav = database.getOneFav()
+            fav
+        }
+    }
+
+    fun onStartTracking(){
+        coroutineScope.launch{
+            val newFav = Favorite()
+            newFav.cardName = _singleCard.value?.get(0)?.name.toString()
+            newFav.cardRarity = _singleCard.value?.get(0)?.rarity.toString()
+            newFav.cardSet = _singleCard.value?.get(0)?.cardSet.toString()
+            newFav.cardType = _singleCard.value?.get(0)?.type.toString()
+            insert(newFav)
+            fav.value = getFavFromDatabase()
+        }
+    }
+
+    private suspend fun insert(newFav: Favorite) {
+        withContext(Dispatchers.IO){
+            database.insert(newFav)
+        }
+    }
+
 
     private fun getCardOverview() {
         coroutineScope.launch {
