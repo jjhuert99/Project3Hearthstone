@@ -1,6 +1,7 @@
 package com.example.project3hearthstone.favoritesscreen
 
 import android.app.Application
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.project3hearthstone.favoritesdatabase.Favorite
@@ -16,6 +17,13 @@ class FavoritesViewModel(application: Application, val database: FavoritesDataba
 
     init{
         initializeFav()
+    }
+    private val _navigateToOverView = MutableLiveData<String>()
+    val navigateToOverView: LiveData<String>
+        get() = _navigateToOverView
+
+    fun passCardName(passName: String){
+        _navigateToOverView.value = passName
     }
 
     private fun initializeFav() {

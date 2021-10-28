@@ -6,9 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.example.project3hearthstone.R
 import com.example.project3hearthstone.cardoverview.CardOverviewViewModel
 import com.example.project3hearthstone.cardoverview.CardOverviewViewModelFactory
+import com.example.project3hearthstone.classscreen.ClassFragmentDirections
 import com.example.project3hearthstone.classscreen.ClassViewModel
 import com.example.project3hearthstone.databinding.FavoritesFragmentBinding
 import com.example.project3hearthstone.favoritesdatabase.FavoritesDatabase
@@ -28,7 +31,13 @@ class FavoritesFragment : Fragment() {
         val viewModelFactory = FavoritesViewModelFactory(application, dataSource)
         binding.viewModel = ViewModelProvider(this, viewModelFactory).get(FavoritesViewModel::class.java)
 
-        binding.favsRecyclerView.adapter = FavoritesAdapter()
+        binding.favsRecyclerView.adapter = FavoritesAdapter(FavoritesAdapter.OnClickListener{
+            viewModel.passCardName(it)
+        })
+
+        viewModel.navigateToOverView.observe(this, Observer{
+            this.findNavController().navigate(FavoritesFragmentDirections.actionFavoritesFragmentToCardOverviewFragment(it))
+        })
         return binding.root
     }
 

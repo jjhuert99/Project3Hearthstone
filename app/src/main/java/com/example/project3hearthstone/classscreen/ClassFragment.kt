@@ -15,6 +15,7 @@ class ClassFragment : Fragment() {
     private val viewModel: ClassViewModel by lazy{
         ViewModelProvider(this).get(ClassViewModel::class.java)
     }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val application = requireNotNull(activity).application
         val binding = ClassFragmentBinding.inflate(inflater)
