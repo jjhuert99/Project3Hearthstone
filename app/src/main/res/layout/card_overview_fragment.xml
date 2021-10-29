@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@drawable/overview_bgc"
         tools:context=".cardoverview.CardOverviewFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.passedCardName}"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="25sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +44,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/back_arrow" />
+                app:srcCompat="@drawable/back_arrow"
+                tools:ignore="VectorDrawableCompat" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
@@ -62,14 +64,17 @@
             android:layout_gravity="right"
             android:layout_marginEnd="16dp"
             app:srcCompat="@drawable/red_heart"
-            android:onClick="@{() -> viewModel.onStartTracking()}"/>
+            android:onClick="@{() -> viewModel.onStartTracking()}"
+            tools:ignore="VectorDrawableCompat" />
 
         <ImageView
             android:id="@+id/cardPic"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="260dp"
             android:paddingBottom="20dp"
-            app:srcCompat="@drawable/logo" />
+            app:imageUrl="@{viewModel.singleCard.get(0).img}"
+            app:srcCompat="@drawable/ic_baseline_image_not_supported_24"
+            tools:ignore="VectorDrawableCompat" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/infoTealBox"

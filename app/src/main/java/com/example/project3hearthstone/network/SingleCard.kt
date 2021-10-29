@@ -8,5 +8,6 @@ data class SingleCard(
         val rarity: String?=null,
         val cardSet: String?=null,
         //Cards Description
-        val text: String?=null
+        val text: String?=null,
+        val img: String?=null
 )

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.project3hearthstone.databinding.ClassFragmentBinding
 
 class ClassFragment : Fragment() {
@@ -23,6 +24,7 @@ class ClassFragment : Fragment() {
         //received Args
         val passedClass = ClassFragmentArgs.fromBundle(requireArguments()).classPass
         val viewModelFactory = ClassViewModelFactory(passedClass, application)
+
 
         binding.viewModel = ViewModelProvider(this, viewModelFactory).get(ClassViewModel::class.java)
         binding.classRecyclerView.adapter = CardsByClassAdapter(CardsByClassAdapter.OnClickListener{

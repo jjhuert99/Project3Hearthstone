@@ -8,24 +8,28 @@
             name="classCard"
             type="com.example.project3hearthstone.network.CardsByClass" />
     </data>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cardByClassHolder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#74E8F9FB">
 
         <TextView
             android:id="@+id/cardName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="@{classCard.name}"
             android:textAlignment="viewStart"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/cardType"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/cardImage"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Text Here" />
@@ -34,12 +38,11 @@
             android:id="@+id/cardType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
             android:layout_marginBottom="8dp"
             android:text="@{classCard.type}"
             android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/cardRarity"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/cardImage"
             app:layout_constraintTop_toBottomOf="@+id/cardName"
             tools:text="Text Here" />
@@ -48,12 +51,11 @@
             android:id="@+id/cardRarity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
             android:layout_marginBottom="8dp"
             android:text="@{classCard.rarity}"
             android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/cardSet"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/cardImage"
             app:layout_constraintTop_toBottomOf="@+id/cardType"
             tools:text="Text Here" />
@@ -62,38 +64,47 @@
             android:id="@+id/cardSet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
             android:layout_marginBottom="8dp"
             android:text="@{classCard.cardSet}"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/cardImage"
             app:layout_constraintTop_toBottomOf="@+id/cardRarity"
             tools:text="Text Here" />
 
         <ImageView
             android:id="@+id/cardImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_width="82dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
+            app:imageUrl="@{classCard.img}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.533"
-            app:srcCompat="@drawable/logo" />
+            app:srcCompat="@drawable/ic_baseline_image_not_supported_24"
+            tools:ignore="VectorDrawableCompat" />
 
         <ImageView
             android:id="@+id/favHeart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/cardSet"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/red_heart" />
+            app:srcCompat="@drawable/red_heart"
+            tools:ignore="VectorDrawableCompat" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.legacy.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+</LinearLayout>
 </layout>
