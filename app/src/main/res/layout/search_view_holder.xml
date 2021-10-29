@@ -8,21 +8,26 @@
             name="searchResultsVH"
             type="com.example.project3hearthstone.network.CardsBySearch" />
     </data>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/searchResultsHolder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#74E8F9FB">
 
         <TextView
             android:id="@+id/cardName2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:text="@{searchResultsVH.name}"
             android:textAlignment="viewStart"
             android:textStyle="bold"
-            android:text="@{searchResultsVH.name}"
             app:layout_constraintBottom_toTopOf="@+id/cardType2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -34,9 +39,10 @@
             android:id="@+id/cardType2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
             android:layout_marginBottom="8dp"
-            android:textAlignment="center"
             android:text="@{searchResultsVH.type}"
+            android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/cardRarity2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -48,9 +54,10 @@
             android:id="@+id/cardRarity2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
             android:layout_marginBottom="8dp"
-            android:textAlignment="center"
             android:text="@{searchResultsVH.rarity}"
+            android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/cardSet2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -62,9 +69,10 @@
             android:id="@+id/cardSet2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
             android:layout_marginBottom="8dp"
-            android:textAlignment="center"
             android:text="@{searchResultsVH.cardSet}"
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -74,26 +82,33 @@
 
         <ImageView
             android:id="@+id/cardImage2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_width="82dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.533"
-            app:srcCompat="@drawable/logo" />
+            app:imageUrl="@{searchResultsVH.img}"
+            app:srcCompat="@drawable/ic_baseline_image_not_supported_24"
+            tools:ignore="VectorDrawableCompat" />
 
         <ImageView
             android:id="@+id/favHeart2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/red_heart" />
+            app:srcCompat="@drawable/red_heart"
+            tools:ignore="VectorDrawableCompat" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.legacy.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+    </LinearLayout>
 </layout>

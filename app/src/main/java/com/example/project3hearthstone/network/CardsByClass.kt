@@ -5,5 +5,6 @@ data class CardsByClass(
         val name: String,
         val type: String,
         val rarity: String?=null,
-        val cardSet: String
+        val cardSet: String,
+        val img: String?=null
 )

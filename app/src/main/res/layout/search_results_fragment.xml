@@ -25,6 +25,7 @@
             android:text="@{`Search results for: `+ viewModel.passedSearch}"
             android:textAlignment="center"
             android:textColor="@color/white"
+            android:fontFamily="@font/montserrat"
             android:textSize="24sp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -62,8 +63,8 @@
             android:id="@+id/searchResultsRV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="1"
             app:queryResults="@{viewModel.searcResults}"/>
 
     </LinearLayout>

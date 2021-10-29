@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.example.project3hearthstone.classscreen.ClassViewModel" />
@@ -28,8 +27,9 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="24dp"
                 android:text="@{viewModel.passedClass}"
+                android:fontFamily="@font/montserrat"
                 android:textColor="@color/white"
-                android:textSize="28sp"
+                android:textSize="26sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -45,15 +45,16 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/back_arrow" />
+                app:srcCompat="@drawable/back_arrow"
+                tools:ignore="VectorDrawableCompat" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/classRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="1"
             app:cardData="@{viewModel.cards}"/>
     </LinearLayout>
 

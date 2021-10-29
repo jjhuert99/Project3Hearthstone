@@ -12,13 +12,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/background_home_screen">
 
         <ImageView
             android:id="@+id/hearthstoneTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="25dp"
+            android:paddingHorizontal="32dp"
             android:paddingTop="20dp"
             app:srcCompat="@drawable/emblem" />
 
@@ -26,11 +27,13 @@
             android:id="@+id/hearthstoneEmblem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/logo" />
+            app:srcCompat="@drawable/logo"
+            android:paddingBottom="10dp"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp">
 
             <EditText
                 android:id="@+id/search_bar"
@@ -51,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:text="@string/search"
+                android:textColor="#fbcd1f"
                 android:onClick="@{() -> viewModel.clickedSearch()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -9,10 +9,15 @@
             type="com.example.project3hearthstone.favoritesdatabase.Favorite" />
     </data>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/favoritesHolder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#74E8F9FB">
 
         <TextView
             android:id="@+id/favName"
@@ -89,11 +94,16 @@
             android:id="@+id/favHeart3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/red_heart" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.legacy.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+    </LinearLayout>
 </layout>

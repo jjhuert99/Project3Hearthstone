@@ -5,5 +5,6 @@ data class CardsBySearch(
         val name: String?=null,
         val type: String?=null,
         val rarity: String?=null,
-        val cardSet: String?=null
+        val cardSet: String?=null,
+        val img: String?=null
 )
