@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.project3hearthstone.R
 import com.example.project3hearthstone.cardoverview.CardOverviewViewModel
@@ -31,6 +32,9 @@ class FavoritesFragment : Fragment() {
         val viewModelFactory = FavoritesViewModelFactory(application, dataSource)
         binding.viewModel = ViewModelProvider(this, viewModelFactory).get(FavoritesViewModel::class.java)
 
+        binding.backArrowF.setOnClickListener{view: View->
+            view.findNavController().navigate(R.id.action_favoritesFragment_to_homeScreenFragment)
+        }
         binding.favsRecyclerView.adapter = FavoritesAdapter(FavoritesAdapter.OnClickListener{
             viewModel.passCardName(it)
         })

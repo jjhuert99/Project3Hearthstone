@@ -53,14 +53,31 @@ class CardOverviewViewModel(passedName: String, application: Application, val da
 
     fun onStartTracking(){
         coroutineScope.launch{
-            val newFav = Favorite()
-            newFav.cardName = _singleCard.value?.get(0)?.name.toString()
-            newFav.cardRarity = _singleCard.value?.get(0)?.rarity.toString()
-            newFav.cardSet = _singleCard.value?.get(0)?.cardSet.toString()
-            newFav.cardType = _singleCard.value?.get(0)?.type.toString()
-            insert(newFav)
-            fav.value = getFavFromDatabase()
+            if(checkFor(_singleCard.value?.get(0)?.name.toString()))
+            {
+                deleteOne(_singleCard.value?.get(0)?.name.toString())
+            }
+            else {
+                val newFav = Favorite()
+                newFav.cardName = _singleCard.value?.get(0)?.name.toString()
+                newFav.cardRarity = _singleCard.value?.get(0)?.rarity.toString()
+                newFav.cardSet = _singleCard.value?.get(0)?.cardSet.toString()
+                newFav.cardType = _singleCard.value?.get(0)?.type.toString()
+                insert(newFav)
+                fav.value = getFavFromDatabase()
+            }
         }
+    }
+
+    private suspend fun deleteOne(toString: String) {
+        withContext(Dispatchers.IO){
+        database.clearOne(toString)}
+    }
+
+    private suspend fun checkFor(toString: String): Boolean {
+        return withContext(Dispatchers.IO){
+         val check = database.getByName(toString)
+        check}
     }
 
     private suspend fun insert(newFav: Favorite) {

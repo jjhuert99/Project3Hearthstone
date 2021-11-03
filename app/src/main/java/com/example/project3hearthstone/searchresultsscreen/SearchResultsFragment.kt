@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.project3hearthstone.R
 import com.example.project3hearthstone.classscreen.ClassFragmentDirections

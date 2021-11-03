@@ -71,6 +71,7 @@
             android:id="@+id/cardPic"
             android:layout_width="match_parent"
             android:layout_height="260dp"
+            android:layout_marginBottom="40dp"
             android:paddingBottom="20dp"
             app:imageUrl="@{viewModel.singleCard.get(0).img}"
             app:srcCompat="@drawable/ic_baseline_image_not_supported_24"
@@ -80,6 +81,8 @@
             android:id="@+id/infoTealBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="30dp"
             android:background="@color/teal_200">
 
             <TextView

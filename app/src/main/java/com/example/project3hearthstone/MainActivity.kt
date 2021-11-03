@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navbar)
         val navController = findNavController(R.id.nav_host_fragment)
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.homeScreenFragment, R.id.favoritesFragment, R.id.mapShopsFragment))
+        val appBarConfiguration = AppBarConfiguration(setOf(R.id.homeScreenFragment, R.id.favoritesFragment, R.id.mapsActivity))
 
         bottomNavigationView.setupWithNavController(navController)
     }

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.project3hearthstone.network.HeartstoneApi
+import com.example.project3hearthstone.network.InfoData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -45,12 +46,21 @@ class HomeScreenViewModel : ViewModel() {
             var getCardsDeferred = HeartstoneApi.retrofitService.getClasses()
             try {
                 var listResult = getCardsDeferred.await()
-                _cardClass.value = listResult.classes
+                val listResult2 = mutableListOf<String>()
+                for(i in listResult.classes){
+                    if(i != "Death Knight" && i != "Dream" && i != "Neutral" && i != "Whizbang")
+                    {
+                        listResult2.add(i)
+                    }
+                }
+                _cardClass.value = listResult2
             } catch (e: Exception) {
                 _status.value = "Failure: ${e.message}"
             }
     }
 }
+
+
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
@@ -63,8 +73,5 @@ class HomeScreenViewModel : ViewModel() {
         _navigateToSearchScreen.value = liveSearch.value
     }
 
-
- /*   fun navigateToClassComplete(){
-        _navigateToClassScreen.value = null
-    }*/
 }
+
