@@ -26,13 +26,11 @@ class HomeScreenFragment : Fragment() {
         binding.viewModel = viewModel
 
         val adapter = HomeScreenAdapter(ClassListener {
-            //classesA ->  Toast.makeText(context, "${classesA}", Toast.LENGTH_LONG).show()
             classesA -> viewModel.navigateToClass(classesA)
         })
 
         viewModel.navigateToClassScreen.observe(this, Observer{
             this.findNavController().navigate(HomeScreenFragmentDirections.actionHomeScreenFragmentToClassFragment(it))
-            //viewModel.navigateToClassComplete()
         })
 
         binding.classesList.adapter = adapter

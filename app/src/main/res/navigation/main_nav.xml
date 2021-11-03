@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_favoritesFragment_to_cardOverviewFragment"
             app:destination="@id/cardOverviewFragment" />
+        <action
+            android:id="@+id/action_favoritesFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapShopsFragment"
@@ -41,6 +44,9 @@
         <action
             android:id="@+id/action_classFragment_to_cardOverviewFragment"
             app:destination="@id/cardOverviewFragment" />
+        <action
+            android:id="@+id/action_classFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment" />
     </fragment>
     <fragment
         android:id="@+id/cardOverviewFragment"
@@ -49,6 +55,9 @@
         <argument
             android:name="cardNamePassed"
             app:argType="string"/>
+        <action
+            android:id="@+id/action_cardOverviewFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchResultsFragment"
@@ -60,5 +69,13 @@
         <action
             android:id="@+id/action_searchResultsFragment_to_cardOverviewFragment"
             app:destination="@id/cardOverviewFragment" />
+        <action
+            android:id="@+id/action_searchResultsFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment" />
     </fragment>
+    <activity
+        android:id="@+id/mapsActivity"
+        android:name="com.example.project3hearthstone.mapscreen.MapsActivity"
+        android:label="activity_maps"
+        tools:layout="@layout/activity_maps" />
 </navigation>

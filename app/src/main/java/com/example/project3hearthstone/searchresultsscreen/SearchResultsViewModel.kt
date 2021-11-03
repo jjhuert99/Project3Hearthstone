@@ -36,8 +36,15 @@ class SearchResultsViewModel(searchString: String, application: Application) : V
         _navigateToOverView.value = passName
     }
 
+    var liveSearch = MutableLiveData<String>()
+
+
     private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+
+    private val _navigateToSearchScreen = MutableLiveData<String>()
+    val navigateToSearchScreen: LiveData<String>
+        get() = _navigateToSearchScreen
 
     init {
         _passedSearch.value = searchString
@@ -57,6 +64,21 @@ class SearchResultsViewModel(searchString: String, application: Application) : V
         }
 
     }
+
+    fun getSearchResults2() {
+        coroutineScope.launch {
+            var getCardsDeferred =
+                liveSearch.value?.let { HeartstoneApi.retrofitService.getCardsBySearch(searchCard = it) }
+            try {
+                var listResult = getCardsDeferred?.await()
+                _searcResults.value = listResult!!
+            } catch (e: Exception) {
+                _status.value = "Failure: ${e.message}"
+            }
+        }
+
+    }
+
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()

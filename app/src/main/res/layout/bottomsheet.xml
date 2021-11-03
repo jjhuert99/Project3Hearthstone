@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+
+    <LinearLayout
+        android:id="@+id/holdAll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#5A08CC"
+            >
+
+            <TextView
+                android:id="@+id/ttop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.2"
+                android:paddingVertical="16dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="80dp"
+                android:text="Top Text"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/shopType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="20dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:text="Card Shop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ttop" />
+
+            <TextView
+                android:id="@+id/mileAway"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="20dp"
+                android:paddingBottom="10dp"
+                android:text="Miles"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/shopType"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/bbottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="80dp"
+            android:paddingVertical="16dp"
+            android:text="Bottom Text"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:background="@color/white"/>
+    </LinearLayout>
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/buttonNav"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="30dp"
+        app:layout_anchor="@id/holdAll"
+        app:layout_anchorGravity="top|end"
+        android:src="@drawable/direction_copy"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

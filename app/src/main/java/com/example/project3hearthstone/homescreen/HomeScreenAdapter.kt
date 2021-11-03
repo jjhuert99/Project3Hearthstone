@@ -29,7 +29,6 @@ class HomeScreenAdapter(val clickListener: ClassListener): ListAdapter<String, H
     }
 
     class HomeScreenViewHolder(val binding: HomescreenViewHolderBinding): RecyclerView.ViewHolder(binding.root){
-        //val className: TextView = binding.findViewById(R.id.className)
         val className: TextView = binding.className
         val classEmblem: ImageView = binding.classEmblem
         val wholeThing: View = binding.wholeThing
