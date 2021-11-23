@@ -4,16 +4,23 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.project3hearthstone.favoritesdatabase.Favorite
 import com.example.project3hearthstone.favoritesdatabase.FavoritesDatabaseDao
+import com.example.project3hearthstone.network.repo.HearthstoneRepo
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
+import javax.inject.Inject
 
-class FavoritesViewModel(application: Application, val database: FavoritesDatabaseDao) : ViewModel() {
-    private val viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+@HiltViewModel
+class FavoritesViewModel @Inject constructor(
+    private val app: Application,
+    private val dispatcher: Dispatchers,
+    private val FavDatabaseDao: FavoritesDatabaseDao
+) : ViewModel() {
 
     private val fav = MutableLiveData<Favorite?>()
-    val favs = database.getAllFav()
+    val favs = FavDatabaseDao.getAllFav()
 
     init{
         initializeFav()
@@ -27,20 +34,16 @@ class FavoritesViewModel(application: Application, val database: FavoritesDataba
     }
 
     private fun initializeFav() {
-        coroutineScope.launch {
-            fav.value = getFavFromDatabase()
+        viewModelScope.launch(dispatcher.IO) {
+            fav.postValue(getFavFromDatabase())
         }
     }
 
     private suspend fun getFavFromDatabase(): Favorite? {
-        return withContext(Dispatchers.IO){
-            var fav = database.getOneFav()
+        return withContext(dispatcher.IO){
+            var fav = FavDatabaseDao.getOneFav()
             fav
         }
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-    }
 }

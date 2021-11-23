@@ -50,7 +50,7 @@
     </fragment>
     <fragment
         android:id="@+id/cardOverviewFragment"
-        android:name="com.example.project3hearthstone.cardoverview.CardOverviewFragment"
+        android:name="com.example.project3hearthstone.ui.cardoverview.overview.CardOverviewFragment"
         android:label="CardOverviewFragment">
         <argument
             android:name="cardNamePassed"
