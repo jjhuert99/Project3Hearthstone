@@ -4,8 +4,12 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.project3hearthstone.network.CardsBySearch
 import com.example.project3hearthstone.network.HeartstoneApi
+import com.example.project3hearthstone.network.networkmodel.ServiceResult
+import com.example.project3hearthstone.network.repo.HearthstoneRepo
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -13,8 +17,14 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class SearchResultsViewModel(searchString: String, application: Application) : ViewModel() {
+@HiltViewModel
+class SearchResultsViewModel @Inject constructor(
+    private val app: Application,
+    private val dispatcher: Dispatchers,
+    private val HearthstoneRepo: HearthstoneRepo
+    ) : ViewModel() {
     //passed Argument
     private val _passedSearch = MutableLiveData<String>()
     val passedSearch: LiveData<String>
@@ -24,8 +34,8 @@ class SearchResultsViewModel(searchString: String, application: Application) : V
     val status: LiveData<String>
         get() = _status
 
-    private val _searcResults = MutableLiveData<List<CardsBySearch>>()
-    val searcResults: LiveData<List<CardsBySearch>>
+    private val _searcResults = MutableLiveData<List<CardsBySearch?>?>()
+    val searcResults: LiveData<List<CardsBySearch?>?>
         get() = _searcResults
 
     private val _navigateToOverView = MutableLiveData<String>()
@@ -38,49 +48,47 @@ class SearchResultsViewModel(searchString: String, application: Application) : V
 
     var liveSearch = MutableLiveData<String>()
 
-
-    private val viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
     private val _navigateToSearchScreen = MutableLiveData<String>()
     val navigateToSearchScreen: LiveData<String>
         get() = _navigateToSearchScreen
 
     init {
-        _passedSearch.value = searchString
         getSearchResults()
     }
 
     private fun getSearchResults() {
-        coroutineScope.launch {
-            var getCardsDeferred =
-                HeartstoneApi.retrofitService.getCardsBySearch(searchCard = _passedSearch.value!!)
-            try {
-                var listResult = getCardsDeferred.await()
-                _searcResults.value = listResult
-            } catch (e: Exception) {
-                _status.value = "Failure: ${e.message}"
+        viewModelScope.launch(dispatcher.IO) {
+            when(val response = HearthstoneRepo.getCardsBySearch(searchCard = passedSearch.value.toString())){
+                is ServiceResult.Succes ->{
+                    _searcResults.postValue(response.data)
+                }
+                is ServiceResult.Error ->{
+                    //error
+                }else ->{
+                //big error
+            }
             }
         }
 
     }
 
     fun getSearchResults2() {
-        coroutineScope.launch {
-            var getCardsDeferred =
-                liveSearch.value?.let { HeartstoneApi.retrofitService.getCardsBySearch(searchCard = it) }
-            try {
-                var listResult = getCardsDeferred?.await()
-                _searcResults.value = listResult!!
-            } catch (e: Exception) {
-                _status.value = "Failure: ${e.message}"
+        viewModelScope.launch(dispatcher.IO) {
+            when(val response =
+                liveSearch.value?.let { HearthstoneRepo.getCardsBySearch(searchCard = it) }){
+                is ServiceResult.Succes ->{
+                    _searcResults.postValue(response.data)
+                }
+                is ServiceResult.Error ->{
+                    //error
+                }else ->{
+                //big error
+            }
             }
         }
-
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-}
+    fun passArgs(passedClass: String) {
+        _passedSearch.value = passedClass
+    }
 }

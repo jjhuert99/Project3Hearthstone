@@ -4,24 +4,25 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.project3hearthstone.network.CardsByClass
-import com.example.project3hearthstone.network.HeartstoneApi
-import kotlinx.coroutines.CoroutineScope
+import com.example.project3hearthstone.network.networkmodel.ServiceResult
+import com.example.project3hearthstone.network.repo.HearthstoneRepo
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import javax.inject.Inject
 
-class ClassViewModel(passedClassB: String, application: Application) : ViewModel() {
-    //coroutines setup
-    private val viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+@HiltViewModel
+class ClassViewModel @Inject constructor(
+    private val app: Application,
+    private val dispatcher: Dispatchers,
+    private val HearthstoneRepo: HearthstoneRepo
+) : ViewModel() {
 
     //name of class passed from click on home screen. ex: Mage
-    private val _passedClass = MutableLiveData<String>()
-    val passedClass: LiveData<String>
+    private val _passedClass = MutableLiveData<String?>()
+    val passedClass: LiveData<String?>
         get() = _passedClass
 
     //sotres responses for succes or failure for retrieveing data
@@ -30,8 +31,8 @@ class ClassViewModel(passedClassB: String, application: Application) : ViewModel
         get() = _status
 
     //holds retrieved data
-    private val _cards = MutableLiveData<List<CardsByClass>>()
-    val cards: LiveData<List<CardsByClass>>
+    private val _cards = MutableLiveData<List<CardsByClass>?>()
+    val cards: LiveData<List<CardsByClass>?>
         get() = _cards
 
     //navigation
@@ -44,24 +45,26 @@ class ClassViewModel(passedClassB: String, application: Application) : ViewModel
     }
 
     init {
-        _passedClass.value = passedClassB
         getCardsByClass()
     }
 
     private fun getCardsByClass() {
-        coroutineScope.launch {
-            var getCardsDeferred = HeartstoneApi.retrofitService.getCardsByClass(aClass = _passedClass.value!!)
-            try {
-                var listResults = getCardsDeferred.await()
-                _cards.value = listResults
-            } catch (e: Exception) {
-                _status.value = "Failure" + e.message
+        viewModelScope.launch(dispatcher.IO) {
+            when(val response = HearthstoneRepo.getCardsByClass(aClass = passedClass.value.toString())){
+                is ServiceResult.Succes ->{
+                    _cards.postValue(response.data)
+                }
+                is ServiceResult.Error ->{
+                    //error
+                }else ->{
+                    //big error
+                }
             }
         }
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
+    fun passArgs(passedClass: String) {
+        _passedClass.value = passedClass
     }
+
 }

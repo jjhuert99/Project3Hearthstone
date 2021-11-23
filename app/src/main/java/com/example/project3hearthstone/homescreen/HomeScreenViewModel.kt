@@ -1,20 +1,23 @@
 package com.example.project3hearthstone.homescreen
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.project3hearthstone.network.HeartstoneApi
-import com.example.project3hearthstone.network.InfoData
-import kotlinx.coroutines.CoroutineScope
+import androidx.lifecycle.viewModelScope
+import com.example.project3hearthstone.network.networkmodel.ServiceResult
+import com.example.project3hearthstone.network.repo.HearthstoneRepo
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeScreenViewModel : ViewModel() {
-
-    //coroutines setup
-    private val viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+@HiltViewModel
+class HomeScreenViewModel @Inject constructor(
+    private val app: Application,
+    private val dispatcher: Dispatchers,
+    private val HearthstoneRepo: HearthstoneRepo
+) : ViewModel() {
 
     private val _status = MutableLiveData<String>()
     val status: LiveData<String>
@@ -41,30 +44,31 @@ class HomeScreenViewModel : ViewModel() {
         getCardClasses()
     }
 
-    private fun getCardClasses() {
-        coroutineScope.launch {
-            var getCardsDeferred = HeartstoneApi.retrofitService.getClasses()
-            try {
-                var listResult = getCardsDeferred.await()
-                val listResult2 = mutableListOf<String>()
-                for(i in listResult.classes){
-                    if(i != "Death Knight" && i != "Dream" && i != "Neutral" && i != "Whizbang")
-                    {
-                        listResult2.add(i)
+    fun getCardClasses() {
+        viewModelScope.launch(dispatcher.IO) {
+            when(val response = HearthstoneRepo.getClasses()){
+                is ServiceResult.Succes ->{
+                    val listResult = response.data?.classes
+                    val listResult2 = mutableListOf<String>()
+                    if (listResult != null) {
+                        for(i in listResult){
+                            if(i != "Death Knight" && i != "Dream" && i != "Neutral" && i != "Whizbang") {
+                                listResult2.add(i)
+                            }
+                        }
                     }
+                    _cardClass.postValue(listResult2)
                 }
-                _cardClass.value = listResult2
-            } catch (e: Exception) {
-                _status.value = "Failure: ${e.message}"
+                is ServiceResult.Error ->{
+                    //error
+                }
+                else ->{
+                    //big error
+                }
             }
     }
 }
 
-
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-    }
     fun navigateToClass(classPicked: String){
         _navigateToClassScreen.value = classPicked
     }

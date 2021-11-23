@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.project3hearthstone.cardoverview.CardOverviewViewModel" />
+            type="com.example.project3hearthstone.ui.cardoverview.overview.CardOverviewViewModel" />
     </data>
 
     <LinearLayout
@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@drawable/overview_bgc"
-        tools:context=".cardoverview.CardOverviewFragment">
+        tools:context=".ui.cardoverview.overview.CardOverviewFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/holdViews"
