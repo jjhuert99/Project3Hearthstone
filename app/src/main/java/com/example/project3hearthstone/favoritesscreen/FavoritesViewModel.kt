@@ -18,7 +18,15 @@ class FavoritesViewModel @Inject constructor(
     private val dispatcher: Dispatchers,
     private val FavDatabaseDao: FavoritesDatabaseDao
 ) : ViewModel() {
+    private val _navYet = MutableLiveData<Boolean>()
+    val navYet: LiveData<Boolean> = _navYet
 
+    fun doneNav(){
+        _navYet.value = false
+    }
+    fun justNav(){
+        _navYet.value = true
+    }
     private val fav = MutableLiveData<Favorite?>()
     val favs = FavDatabaseDao.getAllFav()
 

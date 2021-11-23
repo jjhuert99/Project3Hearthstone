@@ -8,5 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="white_2">#00FFFFFF</color>
+    <color name="stone_yellow">#FBCE5D</color>
+    <color name="stone_purple">#5A08CC</color>
+    <color name="holder_background_blue">#74E8F9FB</color>
 
 </resources>

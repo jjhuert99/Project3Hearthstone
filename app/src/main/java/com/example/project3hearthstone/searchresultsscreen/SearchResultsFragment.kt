@@ -29,11 +29,17 @@ class SearchResultsFragment : Fragment() {
         viewModel.passArgs(passedSearch)
 
         binding.searchResultsRV.adapter = SearchResultsAdapter(SearchResultsAdapter.OnClickListener{
+            viewModel.justNav()
             viewModel.passCardName(it)
         })
-        viewModel.navigateToOverView.observe(viewLifecycleOwner, Observer{
-            this.findNavController().navigate(SearchResultsFragmentDirections.actionSearchResultsFragmentToCardOverviewFragment(it))
-        })
+        viewModel.navigateToOverView.observe(viewLifecycleOwner) {
+            if (viewModel.navYet.value == true) {
+                this.findNavController().navigate(
+                    SearchResultsFragmentDirections.actionSearchResultsFragmentToCardOverviewFragment(it)
+                )
+            }
+            viewModel.doneNav()
+        }
 
         return binding.root
     }

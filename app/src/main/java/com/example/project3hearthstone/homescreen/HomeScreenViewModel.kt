@@ -19,6 +19,15 @@ class HomeScreenViewModel @Inject constructor(
     private val HearthstoneRepo: HearthstoneRepo
 ) : ViewModel() {
 
+    private val _navYet = MutableLiveData<Boolean>()
+    val navYet: LiveData<Boolean> = _navYet
+
+    fun doneNav(){
+        _navYet.value = false
+    }
+    fun justNav(){
+        _navYet.value = true
+    }
     private val _status = MutableLiveData<String>()
     val status: LiveData<String>
         get() = _status

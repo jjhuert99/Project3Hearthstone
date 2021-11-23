@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.project3hearthstone.R
 import com.example.project3hearthstone.databinding.CardOverviewFragmentBinding
 import com.example.project3hearthstone.favoritesdatabase.FavoritesDatabase
@@ -26,8 +27,8 @@ class CardOverviewFragment : Fragment() {
         binding.viewModel = viewModel
         viewModel.initializeFav()
 
-        binding.backArrow.setOnClickListener{view: View->
-            view.findNavController().navigate(R.id.action_cardOverviewFragment_to_homeScreenFragment)
+        binding.backArrow.setOnClickListener{
+            findNavController().popBackStack()
         }
         return binding.root
     }

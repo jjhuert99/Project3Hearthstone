@@ -28,15 +28,20 @@ class ClassFragment : Fragment() {
         viewModel.passArgs(passedClass)
 
 
-        binding.backArrow.setOnClickListener{view: View->
-            view.findNavController().navigate(R.id.action_classFragment_to_homeScreenFragment)
+        binding.backArrow.setOnClickListener{
+            findNavController().popBackStack()
         }
         binding.classRecyclerView.adapter = CardsByClassAdapter(CardsByClassAdapter.OnClickListener{
+            viewModel.justNav()
             viewModel.passCardName(it)
         })
-        viewModel.navigateToOverView.observe(viewLifecycleOwner, Observer{
-            this.findNavController().navigate(ClassFragmentDirections.actionClassFragmentToCardOverviewFragment(it))
-        })
+        viewModel.navigateToOverView.observe(viewLifecycleOwner) {
+            if (viewModel.navYet.value == true) {
+                this.findNavController()
+                    .navigate(ClassFragmentDirections.actionClassFragmentToCardOverviewFragment(it))
+            }
+            viewModel.doneNav()
+        }
         return binding.root
     }
 }

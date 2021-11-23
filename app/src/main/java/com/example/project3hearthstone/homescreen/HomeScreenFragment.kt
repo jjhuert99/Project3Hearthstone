@@ -14,9 +14,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeScreenFragment : Fragment() {
 
-    /*private val viewModel: HomeScreenViewModel by lazy{
-        ViewModelProvider(this).get(HomeScreenViewModel::class.java)
-    }*/
     val viewModel: HomeScreenViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -26,21 +23,30 @@ class HomeScreenFragment : Fragment() {
         binding.viewModel = viewModel
 
         val adapter = HomeScreenAdapter(ClassListener {
-            classesA -> viewModel.navigateToClass(classesA)
+            viewModel.justNav()
+            viewModel.navigateToClass(it)
         })
 
-        viewModel.navigateToClassScreen.observe(viewLifecycleOwner, Observer{
-            this.findNavController().navigate(HomeScreenFragmentDirections.actionHomeScreenFragmentToClassFragment(it))
-        })
+        viewModel.navigateToClassScreen.observe(viewLifecycleOwner) {
+            if (viewModel.navYet.value == true) {
+                this.findNavController().navigate(HomeScreenFragmentDirections.actionHomeScreenFragmentToClassFragment(it))
+            }
+            viewModel.doneNav()
+        }
 
         binding.classesList.adapter = adapter
-        viewModel.cardClass.observe(viewLifecycleOwner, Observer{
+        viewModel.cardClass.observe(viewLifecycleOwner) {
             adapter.submitList(it)
-        })
+        }
 
-        viewModel.navigateToSearchScreen.observe(viewLifecycleOwner, Observer {
-            this.findNavController().navigate(HomeScreenFragmentDirections.actionHomeScreenFragmentToSearchResultsFragment(it))
-        })
+        viewModel.navigateToSearchScreen.observe(viewLifecycleOwner) {
+            if (viewModel.navYet.value == true) {
+                this.findNavController().navigate(
+                    HomeScreenFragmentDirections.actionHomeScreenFragmentToSearchResultsFragment(it)
+                )
+            }
+            viewModel.doneNav()
+        }
 
         return binding.root
     }

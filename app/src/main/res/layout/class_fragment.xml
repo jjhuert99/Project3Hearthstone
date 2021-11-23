@@ -27,14 +27,12 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="24dp"
                 android:text="@{viewModel.passedClass}"
-                android:fontFamily="@font/montserrat"
-                android:textColor="@color/white"
-                android:textSize="26sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Class Name" />
+                tools:text="Class Name"
+                style="@style/fragment_white_title" />
 
             <ImageView
                 android:id="@+id/backArrow"

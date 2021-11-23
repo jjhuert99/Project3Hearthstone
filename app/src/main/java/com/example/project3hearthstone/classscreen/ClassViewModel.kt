@@ -20,6 +20,16 @@ class ClassViewModel @Inject constructor(
     private val HearthstoneRepo: HearthstoneRepo
 ) : ViewModel() {
 
+    private val _navYet = MutableLiveData<Boolean>()
+    val navYet: LiveData<Boolean> = _navYet
+
+    fun doneNav(){
+        _navYet.value = false
+    }
+    fun justNav(){
+        _navYet.value = true
+    }
+
     //name of class passed from click on home screen. ex: Mage
     private val _passedClass = MutableLiveData<String?>()
     val passedClass: LiveData<String?>
