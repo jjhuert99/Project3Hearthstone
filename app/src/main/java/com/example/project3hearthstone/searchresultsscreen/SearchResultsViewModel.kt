@@ -25,6 +25,15 @@ class SearchResultsViewModel @Inject constructor(
     private val dispatcher: Dispatchers,
     private val HearthstoneRepo: HearthstoneRepo
     ) : ViewModel() {
+    private val _navYet = MutableLiveData<Boolean>()
+    val navYet: LiveData<Boolean> = _navYet
+
+    fun doneNav(){
+        _navYet.value = false
+    }
+    fun justNav(){
+        _navYet.value = true
+    }
     //passed Argument
     private val _passedSearch = MutableLiveData<String>()
     val passedSearch: LiveData<String>

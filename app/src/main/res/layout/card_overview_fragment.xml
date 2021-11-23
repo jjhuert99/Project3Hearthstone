@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:text="@{viewModel.singleCard.get(0).playerClass}"
             android:textAlignment="center"
-            android:textColor="#FFC107"
+            android:textColor="@color/stone_yellow"
             android:textSize="24sp" />
 
         <ImageView

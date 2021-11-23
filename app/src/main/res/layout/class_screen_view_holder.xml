@@ -17,7 +17,7 @@
         android:id="@+id/cardByClassHolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#74E8F9FB">
+        android:background="@color/holder_background_blue">
 
         <TextView
             android:id="@+id/cardName"

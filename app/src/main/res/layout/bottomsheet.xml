@@ -22,8 +22,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#5A08CC"
-            >
+            android:background="@color/stone_purple">
 
             <TextView
                 android:id="@+id/ttop"
@@ -33,7 +32,7 @@
                 android:paddingVertical="16dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="80dp"
-                android:text="Top Text"
+                tools:text="Top Text"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +46,7 @@
                 android:paddingBottom="10dp"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                android:text="Card Shop"
+                tools:text="Card Shop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ttop" />
 
@@ -57,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:paddingEnd="20dp"
                 android:paddingBottom="10dp"
-                android:text="Miles"
+                tools:text="Miles"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/shopType"
@@ -70,7 +69,7 @@
             android:paddingStart="20dp"
             android:paddingEnd="80dp"
             android:paddingVertical="16dp"
-            android:text="Bottom Text"
+            tools:text="Bottom Text"
             android:textSize="16sp"
             android:textColor="@color/black"
             android:background="@color/white"/>

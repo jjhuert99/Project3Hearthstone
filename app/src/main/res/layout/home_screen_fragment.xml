@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:text="@string/search"
-                android:textColor="#fbcd1f"
+                android:textColor="@color/stone_yellow"
                 android:onClick="@{() -> viewModel.clickedSearch()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

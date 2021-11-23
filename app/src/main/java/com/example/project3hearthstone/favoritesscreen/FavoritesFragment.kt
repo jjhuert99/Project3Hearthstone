@@ -23,19 +23,21 @@ class FavoritesFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-
-
-        binding.backArrowF.setOnClickListener{view: View->
-            view.findNavController().navigate(R.id.action_favoritesFragment_to_homeScreenFragment)
+        binding.backArrowF.setOnClickListener{
+            findNavController().popBackStack()
         }
         binding.favsRecyclerView.adapter = FavoritesAdapter(FavoritesAdapter.OnClickListener{
+            viewModel.justNav()
             viewModel.passCardName(it)
         })
 
         viewModel.navigateToOverView.observe(viewLifecycleOwner) {
-            this.findNavController().navigate(
-                FavoritesFragmentDirections.actionFavoritesFragmentToCardOverviewFragment(it)
-            )
+            if (viewModel.navYet.value == true) {
+                this.findNavController().navigate(
+                    FavoritesFragmentDirections.actionFavoritesFragmentToCardOverviewFragment(it)
+                )
+            }
+            viewModel.doneNav()
         }
         return binding.root
     }
