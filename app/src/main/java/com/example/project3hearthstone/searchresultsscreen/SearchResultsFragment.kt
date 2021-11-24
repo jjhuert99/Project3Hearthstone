@@ -27,6 +27,7 @@ class SearchResultsFragment : Fragment() {
         val passedSearch = SearchResultsFragmentArgs.fromBundle(requireArguments()).searchString
         binding.viewModel = viewModel
         viewModel.passArgs(passedSearch)
+        viewModel.getSearchResults()
 
         binding.searchResultsRV.adapter = SearchResultsAdapter(SearchResultsAdapter.OnClickListener{
             viewModel.justNav()

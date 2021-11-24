@@ -4,14 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Julio Huerta/Project3Hearthstone/app/src/main/res/drawable/back_arrow.xml" value="0.172" />
+        <entry key="..\:/Users/Julio Huerta/Project3Hearthstone/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.2465" />
+        <entry key="..\:/Users/Julio Huerta/Project3Hearthstone/app/src/main/res/drawable/rounded_corners_search.xml" value="0.2325" />
         <entry key="..\:/Users/Julio Huerta/Project3Hearthstone/app/src/main/res/layout/bottomsheet.xml" value="0.38697916666666665" />
-        <entry key="..\:/Users/Julio Huerta/Project3Hearthstone/app/src/main/res/layout/card_overview_fragment.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Julio Huerta/Project3Hearthstone/app/src/main/res/layout/card_overview_fragment.xml" value="0.33" />
         <entry key="..\:/Users/Julio Huerta/Project3Hearthstone/app/src/main/res/layout/class_fragment.xml" value="0.19947916666666668" />
-        <entry key="..\:/Users/Julio Huerta/Project3Hearthstone/app/src/main/res/layout/class_screen_view_holder.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Julio Huerta/Project3Hearthstone/app/src/main/res/layout/class_screen_view_holder.xml" value="0.33" />
         <entry key="..\:/Users/Julio Huerta/Project3Hearthstone/app/src/main/res/layout/fab_nav.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/Julio Huerta/Project3Hearthstone/app/src/main/res/layout/favorites_fragment.xml" value="0.2" />
-        <entry key="..\:/Users/Julio Huerta/Project3Hearthstone/app/src/main/res/layout/favorites_view_holder.xml" value="0.12952898550724637" />
-        <entry key="..\:/Users/Julio Huerta/Project3Hearthstone/app/src/main/res/layout/home_screen_fragment.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/Julio Huerta/Project3Hearthstone/app/src/main/res/layout/favorites_view_holder.xml" value="0.5" />
+        <entry key="..\:/Users/Julio Huerta/Project3Hearthstone/app/src/main/res/layout/home_screen_fragment.xml" value="0.1" />
         <entry key="..\:/Users/Julio Huerta/Project3Hearthstone/app/src/main/res/layout/homescreen_view_holder.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/Julio Huerta/Project3Hearthstone/app/src/main/res/layout/map_shops_fragment.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/Julio Huerta/Project3Hearthstone/app/src/main/res/layout/search_results_fragment.xml" value="0.28229166666666666" />

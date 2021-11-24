@@ -26,6 +26,7 @@ class ClassFragment : Fragment() {
         val passedClass = ClassFragmentArgs.fromBundle(requireArguments()).classPass
         binding.viewModel = viewModel
         viewModel.passArgs(passedClass)
+        viewModel.getCardsByClass()
 
 
         binding.backArrow.setOnClickListener{

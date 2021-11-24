@@ -55,10 +55,9 @@ class ClassViewModel @Inject constructor(
     }
 
     init {
-        getCardsByClass()
     }
 
-    private fun getCardsByClass() {
+    fun getCardsByClass() {
         viewModelScope.launch(dispatcher.IO) {
             when(val response = HearthstoneRepo.getCardsByClass(aClass = passedClass.value.toString())){
                 is ServiceResult.Succes ->{
