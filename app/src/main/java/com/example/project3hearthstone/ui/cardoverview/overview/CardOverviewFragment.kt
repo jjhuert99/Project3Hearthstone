@@ -23,9 +23,9 @@ class CardOverviewFragment : Fragment() {
         val binding = CardOverviewFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this.viewLifecycleOwner
         val cardNamePassed = CardOverviewFragmentArgs.fromBundle(requireArguments()).cardNamePassed
-        viewModel.passArgs(cardNamePassed)
         binding.viewModel = viewModel
-        viewModel.initializeFav()
+        viewModel.passArgs(cardNamePassed)
+        viewModel.getCardOverview()
 
         binding.backArrow.setOnClickListener{
             findNavController().popBackStack()

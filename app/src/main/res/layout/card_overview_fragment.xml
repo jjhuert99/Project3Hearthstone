@@ -71,8 +71,7 @@
             android:id="@+id/cardPic"
             android:layout_width="match_parent"
             android:layout_height="260dp"
-            android:layout_marginBottom="40dp"
-            android:paddingBottom="20dp"
+            android:layout_marginBottom="15dp"
             app:imageUrl="@{viewModel.singleCard.get(0).img}"
             app:srcCompat="@drawable/ic_baseline_image_not_supported_24"
             tools:ignore="VectorDrawableCompat" />
@@ -82,104 +81,60 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="70dp"
             android:background="@color/teal_200">
 
             <TextView
-                android:id="@+id/typePre"
+                android:id="@+id/card_type_pre"
+                style="@style/overview_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/type"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/rarityPre"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/rarityPre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/rarity"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/setPre"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/typePre" />
-
-            <TextView
-                android:id="@+id/setPre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/set"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/effectPre"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rarityPre" />
-
-            <TextView
-                android:id="@+id/effectPre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="@{`Effect: ` + viewModel.singleCard[0].text}"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="4dp"
+                android:text="@{viewModel.CType}"
+                app:layout_constraintBottom_toTopOf="@+id/card_rarity_pre"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/setPre" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/type" />
 
             <TextView
-                android:id="@+id/typeInfo"
+                android:id="@+id/card_rarity_pre"
+                style="@style/overview_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="@{viewModel.singleCard[0].type}"
-                android:textSize="18sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/typePre"
-                app:layout_constraintStart_toEndOf="@+id/typePre" />
+                android:text="@{viewModel.CRarity}"
+                app:layout_constraintBottom_toTopOf="@+id/card_set_pre"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/card_type_pre"
+                tools:text="@string/rarity" />
 
             <TextView
-                android:id="@+id/rarityInfo"
+                android:id="@+id/card_set_pre"
+                style="@style/overview_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="@{viewModel.singleCard[0].rarity}"
-                android:textSize="18sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/rarityPre"
-                app:layout_constraintStart_toEndOf="@+id/rarityPre" />
+                android:text="@{viewModel.CSet}"
+                app:layout_constraintBottom_toTopOf="@+id/card_effect_pre"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/card_rarity_pre"
+                tools:text="@string/set" />
 
             <TextView
-                android:id="@+id/setInfo"
-                android:layout_width="wrap_content"
+                android:id="@+id/card_effect_pre"
+                style="@style/overview_info"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="@{viewModel.singleCard[0].cardSet}"
-                android:textSize="18sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/setPre"
-                app:layout_constraintStart_toEndOf="@+id/setPre" />
+                android:text="@{viewModel.CEffect}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/card_set_pre"
+                tools:text="Effect: " />
 
-            <TextView
-                android:id="@+id/effectInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text=""
-                android:textSize="18sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/effectPre"
-                app:layout_constraintStart_toEndOf="@+id/effectPre" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>

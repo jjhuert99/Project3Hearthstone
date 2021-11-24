@@ -20,20 +20,19 @@
 
         <TextView
             android:id="@+id/cardName2"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="@{searchResultsVH.name}"
             android:textAlignment="viewStart"
-            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/cardType2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/cardImage2"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Text Here" />
+            tools:text="Text Here"
+            style="@style/card_info_name_bold" />
 
         <TextView
             android:id="@+id/cardType2"
@@ -42,6 +41,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginBottom="8dp"
             android:text="@{searchResultsVH.type}"
+            android:textColor="@color/black"
             android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/cardRarity2"
             app:layout_constraintEnd_toEndOf="parent"
@@ -57,6 +57,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginBottom="8dp"
             android:text="@{searchResultsVH.rarity}"
+            android:textColor="@color/black"
             android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/cardSet2"
             app:layout_constraintEnd_toEndOf="parent"
@@ -73,6 +74,7 @@
             android:layout_marginBottom="8dp"
             android:text="@{searchResultsVH.cardSet}"
             android:textAlignment="center"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

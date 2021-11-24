@@ -27,6 +27,10 @@ class CardOverviewViewModel @Inject constructor(
     val passedCardName: LiveData<String>
         get() = _passedCardName
 
+    private val _isPresent = MutableLiveData<Boolean>()
+    val isPresent: LiveData<Boolean>
+        get() = _isPresent
+
     private val _status = MutableLiveData<String>()
     val status: LiveData<String>
         get() = _status
@@ -40,7 +44,7 @@ class CardOverviewViewModel @Inject constructor(
     private val favs = FavDatabaseDao.getAllFav()
 
     init {
-        getCardOverview()
+        initializeFav()
     }
 
     fun initializeFav() {
@@ -92,15 +96,40 @@ class CardOverviewViewModel @Inject constructor(
         }
     }
 
+    private var _cType = MutableLiveData<String?>(" ")
+    val cType: LiveData<String?>
+        get() = _cType
 
-    private fun getCardOverview() {
+    private var _cRarity = MutableLiveData<String?>(" ")
+    val cRarity: LiveData<String?>
+        get() = _cRarity
+
+    private var _cSet = MutableLiveData<String?>(" ")
+    val cSet: LiveData<String?>
+        get() = _cSet
+
+    private var _cEffect = MutableLiveData<String?>(" ")
+    val cEffect: LiveData<String?>
+        get() = _cEffect
+
+    fun getCardOverview() {
         viewModelScope.launch(dispatcher.IO) {
-            Log.d("JJJ", "${_passedCardName.value}")
-
             when (val response =
                 HearthstoneRepo.getSingleCard(cardName = _passedCardName.value.toString())) {
                 is ServiceResult.Succes -> {
                     _singleCard.postValue(response.data)
+                    if(!response.data?.get(0)?.type.isNullOrEmpty()){
+                        _cType.postValue("Type: "+response.data?.get(0)?.type)
+                    }
+                    if(!response.data?.get(0)?.rarity.isNullOrEmpty()){
+                        _cRarity.postValue("Rarity: "+response.data?.get(0)?.rarity)
+                    }
+                    if(!response.data?.get(0)?.cardSet.isNullOrEmpty()){
+                        _cSet.postValue("Set: "+response.data?.get(0)?.cardSet)
+                    }
+                    if(!response.data?.get(0)?.text.isNullOrEmpty()){
+                        _cEffect.postValue("Effect: "+response.data?.get(0)?.text)
+                    }
                 }
                 is ServiceResult.Error -> {
                     //error

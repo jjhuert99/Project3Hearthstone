@@ -22,15 +22,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:fontFamily="@font/montserrat"
-        android:textColor="@color/stone_yellow"
-        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        tools:text="Class Name" />
+        tools:text="Class Name"
+        style="@style/home_rv_class_name" />
 
     <ImageView
         android:id="@+id/classEmblem"

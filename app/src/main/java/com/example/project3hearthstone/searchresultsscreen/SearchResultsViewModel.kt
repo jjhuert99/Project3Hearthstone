@@ -61,11 +61,8 @@ class SearchResultsViewModel @Inject constructor(
     val navigateToSearchScreen: LiveData<String>
         get() = _navigateToSearchScreen
 
-    init {
-        getSearchResults()
-    }
 
-    private fun getSearchResults() {
+    fun getSearchResults() {
         viewModelScope.launch(dispatcher.IO) {
             when(val response = HearthstoneRepo.getCardsBySearch(searchCard = passedSearch.value.toString())){
                 is ServiceResult.Succes ->{
