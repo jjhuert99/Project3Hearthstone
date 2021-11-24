@@ -29,11 +29,11 @@ class FavoritesAdapter(val clickListener: OnClickListener): ListAdapter<Favorite
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritesAdapter.FavViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavViewHolder {
         return FavViewHolder(FavoritesViewHolderBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
-    override fun onBindViewHolder(holder: FavoritesAdapter.FavViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FavViewHolder, position: Int) {
         val favCard = getItem(position)
         holder.bind(favCard)
         holder.favInfoHolder.setOnClickListener{

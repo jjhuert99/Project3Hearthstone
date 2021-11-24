@@ -65,11 +65,21 @@ class CardOverviewViewModel @Inject constructor(
             if (checkFor(_singleCard.value?.get(0)?.name.toString())) {
                 deleteOne(_singleCard.value?.get(0)?.name.toString())
             } else {
+                if(_singleCard.value?.get(0)?.rarity.isNullOrEmpty()) {
+                    _singleCard.value?.get(0)?.rarity = " "
+                }
+                if(_singleCard.value?.get(0)?.cardSet.isNullOrEmpty()) {
+                    _singleCard.value?.get(0)?.cardSet = " "
+                }
+                if(_singleCard.value?.get(0)?.type.isNullOrEmpty()) {
+                    _singleCard.value?.get(0)?.type = " "
+                }
                 val newFav = Favorite(
                     cardName = _singleCard.value?.get(0)?.name.toString(),
                     cardRarity = _singleCard.value?.get(0)?.rarity.toString(),
                     cardSet = _singleCard.value?.get(0)?.cardSet.toString(),
-                    cardType = _singleCard.value?.get(0)?.type.toString()
+                    cardType = _singleCard.value?.get(0)?.type.toString(),
+                    cardImage = _singleCard.value?.get(0)?.img.toString()
                 )
                 insert(newFav)
                 fav.postValue(getFavFromDatabase())

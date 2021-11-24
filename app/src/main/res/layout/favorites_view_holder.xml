@@ -21,7 +21,9 @@
 
         <TextView
             android:id="@+id/favName"
+            style="@style/card_info_name_bold"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="@{favoriteCard.cardName}"
@@ -31,17 +33,17 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/favImage"
             app:layout_constraintTop_toTopOf="parent"
-            style="@style/card_info_name_bold"
             tools:text="Text Here" />
 
         <TextView
             android:id="@+id/favType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:layout_marginBottom="8dp"
             android:text="@{favoriteCard.cardType}"
-            android:textColor="@color/black"
             android:textAlignment="center"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/favRarity"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -53,10 +55,11 @@
             android:id="@+id/favRarity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:layout_marginBottom="8dp"
             android:text="@{favoriteCard.cardRarity}"
-            android:textColor="@color/black"
             android:textAlignment="center"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/favSet"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -68,10 +71,11 @@
             android:id="@+id/favSet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:layout_marginBottom="8dp"
             android:text="@{favoriteCard.cardSet}"
-            android:textColor="@color/black"
             android:textAlignment="center"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -81,16 +85,16 @@
 
         <ImageView
             android:id="@+id/favImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_width="82dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.533"
-            app:srcCompat="@drawable/logo" />
+            app:CharacterImg="@{favoriteCard.cardImage}" />
 
         <ImageView
             android:id="@+id/favHeart3"

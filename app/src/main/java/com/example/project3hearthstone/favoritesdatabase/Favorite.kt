@@ -1,4 +1,5 @@
 package com.example.project3hearthstone.favoritesdatabase
+
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -18,5 +19,8 @@ data class Favorite(
     var cardRarity: String = "",
 
     @ColumnInfo(name = "card_set")
-    var cardSet: String = ""
+    var cardSet: String = "",
+
+    @ColumnInfo(name = "card_image")
+    var cardImage: String = "",
 )
