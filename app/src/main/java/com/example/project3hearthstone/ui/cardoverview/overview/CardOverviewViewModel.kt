@@ -41,7 +41,7 @@ class CardOverviewViewModel @Inject constructor(
 
 
     private var fav = MutableLiveData<Favorite?>()
-    private val favs = FavDatabaseDao.getAllFav()
+    //private val favs = FavDatabaseDao.getAllFav()
 
     init {
         initializeFav()

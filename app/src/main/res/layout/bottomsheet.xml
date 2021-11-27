@@ -44,11 +44,11 @@
                 android:layout_height="wrap_content"
                 android:paddingStart="20dp"
                 android:paddingBottom="10dp"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                tools:text="Card Shop"
+                android:text="@string/card_shop"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ttop" />
+                app:layout_constraintTop_toBottomOf="@+id/ttop"
+                style="@style/bottom_sheet_map_info" />
 
             <TextView
                 android:id="@+id/mileAway"
@@ -57,24 +57,26 @@
                 android:paddingEnd="20dp"
                 android:paddingBottom="10dp"
                 tools:text="Miles"
-                android:textColor="@color/white"
-                android:textSize="16sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/shopType"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                style="@style/bottom_sheet_map_info"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <TextView
             android:id="@+id/bbottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="20dp"
             android:paddingEnd="80dp"
-            android:paddingVertical="16dp"
             tools:text="Bottom Text"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:background="@color/white"/>
+            style="@style/bottom_sheet_address"
+            android:drawableStart="@drawable/logo_copy"
+            android:drawablePadding="8dp"/>
+
     </LinearLayout>
     </LinearLayout>
+
     <ImageView
         android:id="@+id/buttonNav"
         android:layout_width="80dp"
