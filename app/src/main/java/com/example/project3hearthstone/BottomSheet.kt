@@ -31,7 +31,6 @@ class BottomSheet(
 
         val openNav: ImageView = v.findViewById(R.id.buttonNav)
         openNav.setOnClickListener{
-            //Log.d("JJJ", "Lat Long is: ${position}")
             val gmmIntentUri =
                 Uri.parse("geo:${positionLat},${positionLng}?q=${placeName}")
             val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
@@ -43,10 +42,7 @@ class BottomSheet(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(BottomSheetDialogFragment.STYLE_NORMAL, R.style.BottomClearTheme)
+        setStyle(STYLE_NORMAL, R.style.BottomClearTheme)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
 }

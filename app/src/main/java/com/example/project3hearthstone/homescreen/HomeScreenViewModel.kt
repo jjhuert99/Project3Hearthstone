@@ -84,7 +84,6 @@ class HomeScreenViewModel @Inject constructor(
     }
 
     fun clickedSearch(){
-        Log.d("JJJ","Clicked Search")
         _navYet.value = true
         _navigateToSearchScreen.value = liveSearch.value
     }

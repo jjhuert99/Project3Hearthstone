@@ -6,17 +6,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.project3hearthstone.network.CardsBySearch
-import com.example.project3hearthstone.network.HeartstoneApi
 import com.example.project3hearthstone.network.networkmodel.ServiceResult
 import com.example.project3hearthstone.network.repo.HearthstoneRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel

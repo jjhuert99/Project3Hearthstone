@@ -1,18 +1,13 @@
 package com.example.project3hearthstone.ui.cardoverview.overview
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.example.project3hearthstone.R
 import com.example.project3hearthstone.databinding.CardOverviewFragmentBinding
-import com.example.project3hearthstone.favoritesdatabase.FavoritesDatabase
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

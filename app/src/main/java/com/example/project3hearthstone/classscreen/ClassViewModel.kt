@@ -35,7 +35,6 @@ class ClassViewModel @Inject constructor(
     val passedClass: LiveData<String?>
         get() = _passedClass
 
-    //sotres responses for succes or failure for retrieveing data
     private val _status = MutableLiveData<String>()
     val status: LiveData<String>
         get() = _status
